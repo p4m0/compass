@@ -5,8 +5,10 @@ import time
 import math
 
 #IMPORTANT: MAKE SURE THE COMPASS MIDDLE IS AT THE VERY CENTER !!!
-#The accuracy is heavily dependent on the initial area
 #TO EXIT THE PROGRAM PRESS ESC
+
+# Toggle the visualization of finding the longest distance between blue and red tip
+# Used to have other features
 DEBUG = True
 
 # Step 1: Capture the screen and select the compass area
@@ -98,11 +100,6 @@ while True:
         largest_red_cluster_image = np.zeros_like(compass_image)
         # Draw the largest contour on the image (in red)
         cv2.drawContours(largest_red_cluster_image, [largest_red_contour], -1, (0, 0, 255), thickness=cv2.FILLED)
-        # Show the red pixels only in the detected area of the largest cluster
-        #cv2.namedWindow("Largest Red Cluster", cv2.WINDOW_NORMAL)
-        #cv2.resizeWindow("Largest Red Cluster", 100, 100)
-        #cv2.imshow("Largest Red Cluster", largest_red_cluster_image)
-        #cv2.waitKey(1) 
         
         #---------- BLUE ----------
         # Find contours in the red mask
@@ -111,19 +108,7 @@ while True:
         
         # Draw the largest contour on the image (in blue)
         cv2.drawContours(largest_blue_cluster_image, [largest_blue_contour], -1, (255, 0, 0), thickness=cv2.FILLED)
-        
-        # Show the image with the largest blue cluster
-        #cv2.namedWindow("Largest Blue Cluster", cv2.WINDOW_NORMAL)
-        #cv2.resizeWindow("Largest Blue Cluster", 100, 100)
-        #cv2.imshow("Largest Blue Cluster", largest_blue_cluster_image)
-        #cv2.waitKey(1) 
-        
-        #Create an image to show only the largest cluster of blue pixels
-        largest_white_cluster_image = np.zeros_like(compass_image)
-        
-        # Draw the largest contour on the image (in blue)
-        cv2.drawContours(largest_white_cluster_image, [largest_white_contour], -1, (255, 255, 255), thickness=cv2.FILLED)
-        
+            
         all_images = cv2.hconcat([compass_image_BGR, largest_blue_cluster_image, largest_red_cluster_image])
         cv2.imshow("BGR, Largest blue cluster, Largest red cluster, Largest white cluster", all_images)
         cv2.waitKey(1)
@@ -193,14 +178,6 @@ while True:
     center = width // 2, height // 2
     radius = 7  # Radius of the semicircle
     
-    # Draw the full semicircle as a base
-    #cv2.ellipse(arrowed_image, center, (radius, radius), 0, 0, 180, (200, 200, 200), 2)
-    """if angle_deg > 0:
-        start_angle = 0
-        end_angle = angle_deg
-    else:
-        start_angle = 180 + angle_deg
-        end_angle = 180"""
     start_angle = 0
     end_angle = angle_deg
     cv2.ellipse(arrowed_image, (mid_point), (radius, radius), 0, start_angle, -end_angle, (255, 255, 255), 2)
