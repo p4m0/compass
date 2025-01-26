@@ -15,9 +15,7 @@ How to run:
 2. Run compass.py
 3. Select area for compass
 4. Rotate the compass
+
 Not meant to be ran if you're not familiar with the game (Runescape)
 
-
-
-https://github.com/user-attachments/assets/2212a1d4-2842-4152-adb4-0a7a9b659d03
 
