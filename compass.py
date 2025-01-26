@@ -124,7 +124,7 @@ while True:
         # Draw the largest contour on the image (in blue)
         cv2.drawContours(largest_white_cluster_image, [largest_white_contour], -1, (255, 255, 255), thickness=cv2.FILLED)
         
-        all_images = cv2.hconcat([compass_image_BGR, largest_blue_cluster_image, largest_red_cluster_image, largest_white_cluster_image])
+        all_images = cv2.hconcat([compass_image_BGR, largest_blue_cluster_image, largest_red_cluster_image])
         cv2.imshow("BGR, Largest blue cluster, Largest red cluster, Largest white cluster", all_images)
         cv2.waitKey(1)
         
@@ -157,7 +157,7 @@ while True:
                     cv2.imshow("Compass Image with Distance", temp_image)
                     cv2.waitKey(1)  # Small delay to allow visualization
                     
-    print("blue_tip_point:", blue_tip_point, "red_tip_point: ", red_tip_point)
+    #print("blue_tip_point:", blue_tip_point, "red_tip_point: ", red_tip_point)
     # Findig mid point for angle visualization
     #mid_point = ((red_tip_point[0] + blue_tip_point[0]) / 2, (red_tip_point[1] + blue_tip_point[1]) / 2)
     mid_point = ((0.33*red_tip_point[0] + 0.67*blue_tip_point[0]), (0.33*red_tip_point[1] + 0.67*blue_tip_point[1]))
